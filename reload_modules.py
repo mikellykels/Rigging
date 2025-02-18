@@ -9,7 +9,8 @@ def reload_modules():
         ik_build,
         ik_controls_setup,
         control_utils,
-        fkik_blend_build
+        fkik_blend_build,
+        rigging_ui
     )
 
     importlib.reload(base_rig)
@@ -20,6 +21,7 @@ def reload_modules():
     importlib.reload(ik_controls_setup)
     importlib.reload(control_utils)
     importlib.reload(fkik_blend_build)
+    importlib.reload(rigging_ui)
 
     print("Modules reloaded successfully")
 

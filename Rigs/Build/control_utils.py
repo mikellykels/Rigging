@@ -14,6 +14,19 @@ def add_fkik_switch_attribute(control):
         cmds.warning(f"Control '{control}' does not exist.")
         return False
 
+    # List of attributes to lock and hide
+    attrs_to_lock = [
+        'tx', 'ty', 'tz',  # Translate
+        'rx', 'ry', 'rz',  # Rotate
+        'sx', 'sy', 'sz',  # Scale
+        'v'                # Visibility
+    ]
+
+    # Lock and hide all transform attributes
+    for attr in attrs_to_lock:
+        cmds.setAttr(f"{control}.{attr}", lock=True, keyable=False, channelBox=False)
+
+    # Add FKIK_Switch attribute if it doesn't exist
     if not cmds.attributeQuery('FKIK_Switch', node=control, exists=True):
         cmds.addAttr(control, longName='FKIK_Switch', attributeType='float', min=0, max=1, defaultValue=0, keyable=True)
         print(f"Added FKIK_Switch attribute to {control}")

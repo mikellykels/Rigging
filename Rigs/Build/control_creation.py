@@ -52,6 +52,11 @@ def create_fk_controls(control_template, joints):
         # Duplicate the control template
         new_control = cmds.duplicate(control_template, name=ctrl_name)[0]
 
+        # Set the color override to blue
+        ctrl_shape = cmds.listRelatives(new_control, shapes=True)[0]
+        cmds.setAttr(f"{ctrl_shape}.overrideEnabled", 1)
+        cmds.setAttr(f"{ctrl_shape}.overrideColor", 6)  # 6 is blue in Maya's color index
+
         # Create offset group
         offset_group = cmds.group(empty=True, name=offset_name)
 
